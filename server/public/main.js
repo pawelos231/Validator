@@ -167,10 +167,8 @@ form.addEventListener("submit", async (e) => {
   for (const pair of formData.entries()) {
     formObject[pair[0]] = pair[1];
   }
-
-  console.log(formObject);
-
-  await fetch("http://localhost:2017/form", {
+  const url = "http://imiki.pl:2020/form";
+  await fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -181,6 +179,7 @@ form.addEventListener("submit", async (e) => {
     .then((data) => {
       let h1 = document.querySelector("h1");
       h1.textContent = data.message;
-      data.flag ? (h1.style.color = "green") : (h1.style.color = "red");
+      console.log(data.flag)
+      data.flag == 1 ? (h1.style.color = "green") : (h1.style.color = "red");
     });
 });
